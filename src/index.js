@@ -2,20 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 //rooting
-
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 //css
 import './index.css';
 
 //components
 import App from './App';
+import Login from './components/Login';
 
 //serviceWorker
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+// -- ICI CREATION D'UNE CONSTANTE DANS LAQUELLE LES ROUTES SONT DÉCLARÉES
+// -- CHAQUE ROUTE DIRIGE VERS UN COMPONANT
+const routing = (
+    <Router>
+        <div>
+            <Route exact path="/" component={App} />
+            <Route path="/login" component={Login} />
+        </div>
+    </Router>
+)
+
+ReactDOM.render(
+    // REMPLACE <APP/> PAR LA CONST ROUTING POUR QUE CELLE CI REDIRIGE L'APP EN FONCTION DES ROUTES 
+    routing,
+    document.getElementById('root')
+);
+
 serviceWorker.unregister();
